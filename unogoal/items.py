@@ -30,4 +30,20 @@ class Match(Item):
     fts = Field()
     updated = Field()
 
+class Odd(Item):
+    id = Field()
+    datetime = Field()
+    competition_id = Field()
+    fifa_id = Field()
+    home_team_id = Field()
+    home_team = Field()
+    away_team_id = Field()
+    away_team = Field()
+    home = Field()
+    draw = Field()
+    away = Field()
+    hts = Field()
+    fts = Field()
+    updated = Field()
+
 
