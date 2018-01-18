@@ -42,8 +42,8 @@ class Odd(Item):
     home = Field()
     draw = Field()
     away = Field()
-    hts = Field()
-    fts = Field()
+    #hts = Field()
+    #fts = Field()
     updated = Field()
 
 
