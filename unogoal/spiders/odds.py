@@ -32,7 +32,9 @@ class OddsSpider(Spider):
             if i % 2 == 0:
                 continue
             item = Odd()
-            item['id'] = parse_qs(m.xpath('./td[@class="gocheck"]/a/@href').extract_first())['http://www.unogoal.com/1x2/1x2.aspx?id'][0]
+
+            d = parse_qs(m.xpath('./td[@class="gocheck"]/a/@href').extract_first())
+            item['id'] = d[list(d)[0]][0]
             date_time = m.xpath('./td[@class="en"]/script/text()').extract_first()[9:-1].split(',')
             date_time[1] = date_time[1].split('-')[0]
             yy, mm, dd, hh, mmm, ss = list(map(int, date_time))
