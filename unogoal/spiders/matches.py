@@ -28,7 +28,7 @@ class MatchesSpider(Spider):
             dates.append(ds)
 
         #dates = ['2017-09-09', '2017-09-10', '2017-09-11']
-        start_url = 'http://data.unogoal.me/1x2/bet007history.aspx?id=&company=&matchdate={}'
+        start_url = 'http://data.unogoal.in/1x2/bet007history.aspx?id=&company=&matchdate={}'
         for d in dates:
             request = Request(url=start_url.format(d), callback=self.parse)
             request.meta['proxy'] = 'http://127.0.0.1:8118'
@@ -41,7 +41,10 @@ class MatchesSpider(Spider):
             if i % 2 == 0:
                 continue
             item = Match()
-            item['id'] = parse_qs(m.xpath('./td[@class="gocheck"]/a/@href').extract_first())['http://www.unogoal.com/1x2/1x2.aspx?id'][0]
+            d = parse_qs(m.xpath('./td[@class="gocheck"]/a/@href').extract_first())
+            item['id'] = d[list(d)[0]][0]
+
+            #item['id'] = parse_qs(m.xpath('./td[@class="gocheck"]/a/@href').extract_first())['http://www.unogoal.com/1x2/1x2.aspx?id'][0]
             date_time = m.xpath('./td[@class="en"]/script/text()').extract_first()[9:-1].split(',')
             date_time[1] = date_time[1].split('-')[0]
             yy, mm, dd, hh, mmm, ss = list(map(int, date_time))
