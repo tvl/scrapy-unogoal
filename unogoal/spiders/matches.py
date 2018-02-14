@@ -19,8 +19,8 @@ class MatchesSpider(Spider):
 
     def start_requests(self):
         dates = []
-        s = date(2018, 1, 18)
-        p = 1
+        s = date(2017, 1, 1)
+        p = 365
         #p = 3
         for i in range(p):
             d = s + timedelta(days=i)
